@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Central
 {
-    public class Llamada
+    public abstract class Llamada
     {
         #region Atributos
         protected float _duracion;
@@ -28,6 +28,7 @@ namespace Central
             get { return this._nroOrigen; }
 
         }
+        public abstract float CostoLlamada { get; }
         #endregion
         #region Constructor
         public Llamada(string origen,string destino,float duracion)
@@ -38,7 +39,7 @@ namespace Central
         }
         #endregion
         #region Metodos
-        public virtual string Mostrar()
+        protected virtual string Mostrar()
         {
             StringBuilder llamada = new StringBuilder();
             llamada.Append("Origen:"+this.NroOrigen+" Destino:"+this.NroDestino+" Duracion:"+this.Duracion.ToString());
@@ -47,6 +48,18 @@ namespace Central
         public static int OrdenarPorDuracion(Llamada uno,Llamada dos)
         {
             return uno.Duracion.CompareTo(dos.Duracion);
+        }
+        #endregion
+
+
+        #region Sobrecargas
+        public static bool operator ==(Llamada uno,Llamada dos)
+        {
+            return (uno.NroDestino == dos.NroDestino && uno.NroDestino == dos.NroOrigen);
+        }
+        public static bool operator !=(Llamada uno, Llamada dos)
+        {
+            return !(uno == dos);
         }
         #endregion
     }

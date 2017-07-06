@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("CentralitaHerencia")]
+[assembly: AssemblyTitle("CentralitaPolimorfismo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CentralitaHerencia")]
+[assembly: AssemblyProduct("CentralitaPolimorfismo")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
-[assembly: Guid("505dc32a-2928-47f1-b998-199193af1256")]
+[assembly: Guid("66362168-c655-4d61-a946-991d0274c8a5")]
 
 // La información de versión de un ensamblado consta de los cuatro valores siguientes:
 //

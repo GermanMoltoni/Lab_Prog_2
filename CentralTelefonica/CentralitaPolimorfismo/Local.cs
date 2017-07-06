@@ -9,7 +9,7 @@ namespace Central
     public class Local:Llamada
     {
         protected float _costo;
-        public float CostoLlamada {
+        public override float CostoLlamada {
             get { return this.CalcularCosto(); }
         }
         public Local(Llamada unaLlamada,float costo):base(unaLlamada.NroOrigen,unaLlamada.NroDestino,unaLlamada.Duracion)

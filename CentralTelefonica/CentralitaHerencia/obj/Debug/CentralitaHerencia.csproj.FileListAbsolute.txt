@@ -1,1 +1,6 @@
 C:\Users\Sherman\Desktop\Lab_Prog_2\CentralTelefonica\CentralitaHerencia\bin\Debug\CentralitaHerencia.exe.config
+C:\Users\Sherman\Desktop\Lab_Prog_2\CentralTelefonica\CentralitaHerencia\bin\Debug\CentralitaHerencia.exe
+C:\Users\Sherman\Desktop\Lab_Prog_2\CentralTelefonica\CentralitaHerencia\bin\Debug\CentralitaHerencia.pdb
+C:\Users\Sherman\Desktop\Lab_Prog_2\CentralTelefonica\CentralitaHerencia\obj\Debug\CentralitaHerencia.csprojResolveAssemblyReference.cache
+C:\Users\Sherman\Desktop\Lab_Prog_2\CentralTelefonica\CentralitaHerencia\obj\Debug\CentralitaHerencia.exe
+C:\Users\Sherman\Desktop\Lab_Prog_2\CentralTelefonica\CentralitaHerencia\obj\Debug\CentralitaHerencia.pdb
