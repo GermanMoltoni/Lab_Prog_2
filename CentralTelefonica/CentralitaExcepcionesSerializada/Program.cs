@@ -31,6 +31,9 @@ namespace CentralitaExcepcionesSerializada
             telefonica.Serializarse();
             telefonica.DeSerializarse();
             Console.WriteLine(telefonica.ToString());
+
+            Console.WriteLine("------------");
+            Centralita.LeerDeArchivo();
             Console.Read();
         }
     }

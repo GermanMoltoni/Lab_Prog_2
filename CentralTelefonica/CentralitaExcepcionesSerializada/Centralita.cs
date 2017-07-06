@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
 using System.Xml.Serialization;
 using CentralitaExcepcionesSerializada;
+using Excepciones;
 namespace Central
 {
     [Serializable]
@@ -109,13 +111,22 @@ namespace Central
         }
         public static Centralita operator +(Centralita central, Llamada nuevaLlamada)
         {
+
             if (central != nuevaLlamada)
             {
                 central.AgregarLlamada(nuevaLlamada);
-                
+                try
+                {
+                    central.GuardarEnArchivo(nuevaLlamada,true);
+                }
+                catch(Exception e)
+                {
+                    throw e;
+                }
             }
             else
-                Console.WriteLine("La llamada ya existe");
+                throw new CentralitaException("Llamada Repetida", "Centralita", "AgregarLlamada");
+
             return central;
         }
         public override string ToString()
@@ -153,7 +164,38 @@ namespace Central
         }
         private bool GuardarEnArchivo(Llamada unaLlamada,bool agrego)
         {
+            try
+            {
+                
+                StreamWriter writer = new StreamWriter("Llamadas.txt", agrego);
+                writer.WriteLine(unaLlamada.ToString());
+                writer.Close();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
             return true;
         }
+        public static bool LeerDeArchivo()
+        {
+            
+            try
+            {
+
+                using (StreamReader reader = new StreamReader("Llamadas.txt"))
+                {
+                    Console.WriteLine(reader.ReadToEnd());
+                }
+                    
+                
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            return true;
+        }
+
     }
 }

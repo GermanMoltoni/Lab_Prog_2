@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CentralitaExcepcionesSerializada
+namespace Excepciones
 {
     public class CentralitaException:Exception
     {
