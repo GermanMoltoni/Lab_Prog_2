@@ -12,9 +12,14 @@ namespace Central
         protected float _costo;
         public override float CostoLlamada {
             get { return this.CalcularCosto(); }
-            set {; }
+            set { ;}
         }
-        public Local()
+        public float Costo
+        {
+            get { return this._costo; }
+            set { this._costo=value; }
+        }
+        public Local():base()
         {
 
         }

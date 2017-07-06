@@ -12,9 +12,10 @@ namespace Central
         protected Franja _franjaHoraria;
         public override float CostoLlamada {
             get { return this.CalcularCosto(); }
-            set {; }
+            set { ; }
         }
-
+        public Franja FranjaHoraria { get { return this._franjaHoraria; }
+            set { this._franjaHoraria = value; } }
         public Provincial()
         {
 

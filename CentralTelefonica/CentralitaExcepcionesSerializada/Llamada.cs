@@ -20,17 +20,17 @@ namespace Central
         #region Propiedades
         public float Duracion {
             get { return this._duracion; }
-            set {; }
+            set { this._duracion = value; }
         }
         public string NroDestino
         {
             get { return this._nroDestino; }
-            set {; }
+            set { this._nroDestino = value; }
         }
         public string NroOrigen
         {
             get { return this._nroOrigen; }
-            set {; }
+            set { this._nroOrigen = value; }
         }
         public abstract float CostoLlamada { get; set; }
         #endregion

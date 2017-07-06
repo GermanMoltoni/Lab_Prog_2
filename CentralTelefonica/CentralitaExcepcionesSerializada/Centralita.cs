@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using CentralitaExcepcionesSerializada;
 namespace Central
 {
     [Serializable]
@@ -19,17 +20,17 @@ namespace Central
             set { this._ruta = value; }
         }
 
-        public float GananciaPorLocal { get {return this.CalcularGanancia(TipoLlamada.Local); }
-            set {; }
+        public float GananciaPorLocal { get {return this.CalcularGanancia(TipoLlamada.Local);}
+            
         }
         public float GananciaPorProvincial { get { return this.CalcularGanancia(TipoLlamada.Provincial); }
-            set {; }
+             
         }
         public float GananciaTotal { get { return this.CalcularGanancia(TipoLlamada.Todas); }
-            set {; }
+             
         }
         public List<Llamada> Llamadas { get {return this._listaDeLlamadas; }
-            set {; }
+            set { this._listaDeLlamadas=value; }
         }
 
         public Centralita()
@@ -124,16 +125,30 @@ namespace Central
 
         public bool DeSerializarse()
         {
+            Centralita centralitaNueva;
+            using(XmlTextReader reader = new XmlTextReader(this.RutaDeArchivo))
+            {
+                XmlSerializer des = new XmlSerializer(typeof(Centralita));
+                centralitaNueva = (Centralita)des.Deserialize(reader);
+            }
+            this._listaDeLlamadas = centralitaNueva._listaDeLlamadas;
+            
             return false;
         }
         public bool Serializarse()
         {
-            using (XmlTextWriter writer = new XmlTextWriter(this.RutaDeArchivo.ToString(), System.Text.Encoding.UTF8))
+            try
             {
-                XmlSerializer serializa = new XmlSerializer(typeof(Centralita));
-                serializa.Serialize(writer, this);
+                using (XmlTextWriter writer = new XmlTextWriter(this.RutaDeArchivo.ToString(), System.Text.Encoding.UTF8))
+                {
+                    XmlSerializer serializa = new XmlSerializer(typeof(Centralita));
+                    serializa.Serialize(writer, this);
+                }
             }
+            catch (Exception e)
+            {
                 
+            }
             return true;    
         }
         private bool GuardarEnArchivo(Llamada unaLlamada,bool agrego)

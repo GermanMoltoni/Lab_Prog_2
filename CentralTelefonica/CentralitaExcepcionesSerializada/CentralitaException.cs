@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CentralitaExcepcionesSerializada
 {
-    class CentralitaException:Exception
+    public class CentralitaException:Exception
     {
         protected Exception _excepcionInterna;
         protected string _nombreClase;
