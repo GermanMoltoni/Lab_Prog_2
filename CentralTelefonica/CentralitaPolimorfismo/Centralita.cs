@@ -36,11 +36,11 @@ namespace Central
                         break;
                     case TipoLlamada.Provincial:
                         if (item is Provincial)
-                            costo += ((Provincial)item).CostoLLamada;
+                            costo += ((Provincial)item).CostoLlamada;
                         break;
                     case TipoLlamada.Todas:
                         if (item is Provincial)
-                            costo += ((Provincial)item).CostoLLamada;
+                            costo += ((Provincial)item).CostoLlamada;
                         if (item is Local)
                             costo += ((Local)item).CostoLlamada;
                         break;
@@ -58,17 +58,52 @@ namespace Central
             foreach(Llamada llamada in this.Llamadas)
             {
                 if (llamada is Local)
-                    centralita.AppendLine(((Local)llamada).Mostrar());
+                    centralita.AppendLine(((Local)llamada).ToString());
                 if (llamada is Provincial)
-                    centralita.AppendLine(((Provincial)llamada).Mostrar());
+                    centralita.AppendLine(((Provincial)llamada).ToString());
             }
             return centralita.ToString();
 
         }
 
-        public void OrdenarLLamadas() {
+        public void OrdenarLlamadas() {
             this.Llamadas.Sort(Llamada.OrdenarPorDuracion);
         }
-
+        private void AgregarLlamada(Llamada nuevaLlamada)
+        {
+           this._listaDeLlamadas.Add(nuevaLlamada);
+        }
+        public static bool operator ==(Centralita central, Llamada nuevaLlamada)
+        {
+            bool retorno = false;
+            foreach(Llamada llamada in central.Llamadas)
+            {
+                if(llamada == nuevaLlamada)
+                {
+                    retorno = true;
+                    break;
+                }
+            }
+            return retorno;
+        }
+        public static bool operator !=(Centralita central, Llamada nuevaLlamada)
+        {
+            return !(central == nuevaLlamada);
+        }
+        public static Centralita operator +(Centralita central, Llamada nuevaLlamada)
+        {
+            if (central != nuevaLlamada)
+            {
+                central.AgregarLlamada(nuevaLlamada);
+                
+            }
+            else
+                Console.WriteLine("La llamada ya existe");
+            return central;
+        }
+        public override string ToString()
+        {
+            return this.Mostrar();
+        }
     }
 }

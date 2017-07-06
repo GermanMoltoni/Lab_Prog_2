@@ -12,20 +12,31 @@ namespace Central
         public override float CostoLlamada {
             get { return this.CalcularCosto(); }
         }
-        public Local(Llamada unaLlamada,float costo):base(unaLlamada.NroOrigen,unaLlamada.NroDestino,unaLlamada.Duracion)
+        public Local(string origen, float duracion, string destino, float costo)
+           : base(origen, destino, duracion)
         {
             this._costo = costo;
         }
-        public Local(string origen,float duracion,string destino,float costo):this(new Llamada(origen, destino, duracion), costo) { }
+        public Local(Llamada unaLlamada, float costo) : this(unaLlamada.NroOrigen, unaLlamada.Duracion, unaLlamada.NroDestino, costo)
+        { }
         private float CalcularCosto()
         {
             return base.Duracion * this._costo;
         }
-        public override string Mostrar() {
+        protected override string Mostrar() {
             StringBuilder Local = new StringBuilder();
             Local.AppendLine(base.Mostrar());
             Local.AppendLine("Costo:"+this.CostoLlamada.ToString());
             return Local.ToString();
         }
+        public override bool Equals(object obj)
+        {
+            return (this.GetType() == obj.GetType());
+        }
+        public override string ToString()
+        {
+            return this.Mostrar().ToString();
+        }
+
     }
 }

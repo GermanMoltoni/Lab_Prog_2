@@ -9,15 +9,17 @@ namespace Central
     public class Provincial:Llamada
     {
         protected Franja _franjaHoraria;
-        public float CostoLLamada {
+        public override float CostoLlamada {
             get { return this.CalcularCosto(); }
         }
 
-        public Provincial(Franja miFranja,Llamada unaLlamada):base(unaLlamada.NroOrigen, unaLlamada.NroDestino, unaLlamada.Duracion)
+        public Provincial(Franja miFranja,Llamada unaLlamada):this(unaLlamada.NroOrigen,miFranja, unaLlamada.Duracion, unaLlamada.NroDestino)
         {
+            
+        }
+        public Provincial(string origen,Franja miFranja,float duracion,string destino):base(origen, destino, duracion) {
             this._franjaHoraria = miFranja;
         }
-        public Provincial(string origen,Franja miFranja,float duracion,string destino):this(miFranja,new Llamada(origen, destino, duracion)) { }
 
 
 
@@ -43,12 +45,20 @@ namespace Central
             return costo;
 
         }
-        public override string Mostrar()
+        protected override string Mostrar()
         {
             StringBuilder cadena = new StringBuilder();
             cadena.AppendLine(base.Mostrar());
-            cadena.AppendLine("Costo:" + this.CostoLLamada.ToString()+" Franja:"+this._franjaHoraria.ToString());
+            cadena.AppendLine("Costo:" + this.CostoLlamada.ToString()+" Franja:"+this._franjaHoraria.ToString());
             return cadena.ToString();
+        }
+        public override bool Equals(object obj)
+        {
+            return (this.GetType() == obj.GetType());
+        }
+        public override string ToString()
+        {
+            return this.Mostrar().ToString();
         }
     }
 }

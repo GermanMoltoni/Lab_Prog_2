@@ -55,7 +55,7 @@ namespace Central
         #region Sobrecargas
         public static bool operator ==(Llamada uno,Llamada dos)
         {
-            return (uno.NroDestino == dos.NroDestino && uno.NroDestino == dos.NroOrigen);
+            return (uno.Equals(dos) && uno.NroDestino == dos.NroDestino && uno.NroOrigen == dos.NroOrigen);
         }
         public static bool operator !=(Llamada uno, Llamada dos)
         {
