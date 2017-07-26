@@ -41,6 +41,21 @@ namespace Consola
             Producto manzana = new Producto("Manzana", 1);
             Producto manzana1 = new Producto("Manzana", 3);
             Producto anana = new Producto("Anana", 1);
+
+            Console.WriteLine("-----------------------------------");
+
+            Console.WriteLine((int)pera);
+            Console.WriteLine(pera);
+
+
+            Console.WriteLine("-----------------------------------");
+
+
+
+
+
+
+
             Deposito d1 = new Deposito(2);
             d1.Productos[0] = pera;
             d1.Productos[1] = manzana;

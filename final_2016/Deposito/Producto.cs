@@ -39,5 +39,16 @@ namespace Deposito_Producto
         {
             return !(uno == dos);
         }
+
+
+        public static implicit operator string(Producto a)
+        {
+            return a.Nombre;
+        }
+        public static explicit operator int(Producto a)
+        {
+            return a.Stock;
+        }
+
     }
 }
