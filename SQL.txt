@@ -1,0 +1,141 @@
+public bool guardar()
+        {
+            bool todoOk = true;
+            SqlConnection conexion = new SqlConnection(ClassLibraryClase21.Properties.Settings.Default.CadenaConexion);
+            SqlCommand comando = new SqlCommand();
+            // INDICO EL TIPO DE COMANDO
+            comando.CommandType = System.Data.CommandType.Text;
+            // ESTABLEZCO LA CONEXION
+            comando.Connection = conexion;
+            string query = "INSERT INTO Personal(id,nombre,apellido,puesto,salario) VALUES(";
+            query = query + "'" + this.Legajo + "'," + this.Nombre + "'," + this.Apellido + "'," + this.PuestoJerarquico.ToString() + "'," + this.Salario + "')";
+            try
+            {
+                comando.CommandText = query;
+                conexion.Open();
+                comando.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception)
+            {
+                todoOk = false;
+            }
+            finally
+            {
+                if (todoOk)
+                    conexion.Close();
+            
+            }
+            return todoOk;
+        }
+
+        public bool leer(out string dato)
+        {
+            bool todoOk = true;
+            SqlConnection conexion = new SqlConnection(ClassLibraryClase21.Properties.Settings.Default.CadenaConexion);
+            SqlCommand comando = new SqlCommand();
+            // INDICO EL TIPO DE COMANDO
+            comando.CommandType = System.Data.CommandType.Text;
+            // ESTABLEZCO LA CONEXION
+            comando.Connection = conexion;
+            try
+            {
+                // LE PASO LA INSTRUCCION SQL
+                comando.CommandText = "SELECT * FROM Personal ORDER BY apellido, nombre";
+
+                // ABRO LA CONEXION A LA BD
+                conexion.Open();
+
+                // EJECUTO EL COMMAND                 
+                SqlDataReader oDr = comando.ExecuteReader();
+                StringBuilder cadena = new StringBuilder();
+                // MIENTRAS TENGA REGISTROS...
+                while (oDr.Read())
+                {
+                    // ACCEDO POR NOMBRE O POR INDICE
+                    cadena.AppendLine((new Empleado(oDr["nombre"].ToString(), oDr["apellido"].ToString(), oDr["legajo"].ToString(), (EPuestoJerarquico)oDr["puesto"], int.Parse(oDr["salario"]))).ToString());
+                }
+
+                //CIERRO EL DATAREADER
+                oDr.Close();
+                dato = cadena.ToString();
+                todoOk = true;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            finally
+            {
+                if (todoOk)
+                    conexion.Close();
+            }
+            return true;
+        }
+
+        public bool modificar()
+        {
+
+            bool todoOk = false;
+            string sql = "UPDATE Personal SET nombre = '" + p.Nombre + "', apellido = '";
+            sql = sql + p.Apellido + "', edad = " + p.Edad.ToString() + " WHERE id = " + p.ID.ToString();
+
+            try
+            {
+                // LE PASO LA INSTRUCCION SQL
+                this._comando.CommandText = sql;
+
+                // ABRO LA CONEXION A LA BD
+                this._conexion.Open();
+
+                // EJECUTO EL COMMAND
+                this._comando.ExecuteNonQuery();
+
+                todoOk = true;
+            }
+            catch (Exception)
+            {
+                todoOk = false;
+            }
+            finally
+            {
+                if (todoOk)
+                    this._conexion.Close();
+            }
+            return todoOk;
+        }
+
+        public bool eliminar()
+        {
+            
+            bool todoOk = false;
+
+            string sql = "DELETE FROM Personas WHERE id = " + p.ID.ToString();
+
+            try
+            {
+                // LE PASO LA INSTRUCCION SQL
+                this._comando.CommandText = sql;
+
+                // ABRO LA CONEXION A LA BD
+                this._conexion.Open();
+
+                // EJECUTO EL COMMAND
+                this._comando.ExecuteNonQuery();
+
+                todoOk = true;
+
+            }
+            catch (Exception)
+            {
+                todoOk = false;
+            }
+            finally
+            {
+                if (todoOk)
+                    this._conexion.Close();
+            }
+            return todoOk;
+        }
+        }
