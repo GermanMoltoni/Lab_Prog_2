@@ -49,6 +49,7 @@ namespace Deposito_Producto
         {
             return a.Stock;
         }
+       
 
     }
 }

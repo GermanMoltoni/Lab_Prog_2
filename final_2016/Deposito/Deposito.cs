@@ -17,6 +17,20 @@ namespace Deposito_Producto
         {
             this._productos = new Producto[espacio];
         }
+
+        public Producto this[int indice]
+        {
+            get
+            {
+                return this._productos[indice];
+            }
+            set
+            {
+                this._productos[indice] = value;
+            }
+        }
+
+
         public Producto[] Productos
         {
             get { return this._productos;}
